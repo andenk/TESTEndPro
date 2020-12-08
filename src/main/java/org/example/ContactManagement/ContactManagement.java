@@ -12,21 +12,23 @@ import java.util.List;
  */
 public class ContactManagement {
 
-    private ArrayList<Contact> contactList = new ArrayList();
+    private static ArrayList<Contact> contactList = new ArrayList();
 
     //add
-    public void addContact(Contact contact) {
+    public static void addContact(String name, String PhoneNumber) {
+
+        Contact contact = new Contact(name, PhoneNumber);
         contactList.add(contact);
         System.out.println("Contact added");
 
     }
 
-    public ArrayList getContactList() {
+    public static ArrayList getContactList() {
         return contactList;
     }
 
     //Show all
-    public void printContactList(){
+    public static void printContactList(){
         for(Contact contact : contactList){
             System.out.println(contact);
         }
@@ -34,18 +36,16 @@ public class ContactManagement {
 
 
     //Search
-    public void searchContact (String searchLetter){
+    public static void searchContact (String searchLetter){
         for(Contact contact : contactList){
-            if(contact.getName().startsWith(searchLetter)){
+            if(contact.getName().toLowerCase().startsWith(searchLetter.toLowerCase())){
                 System.out.println(contact);
             }
-
         }
-
     }
 
     //Update name
-    public void updateName(String oldName, String newName){
+    public static void updateName(String oldName, String newName){
         for (Contact contact : contactList){
             if(contact.getName().equalsIgnoreCase(oldName)){
                 contact.setName(newName);
@@ -54,7 +54,7 @@ public class ContactManagement {
     }
 
     //Update number
-    public void updatePhoneNumber(String name, String newNumber){
+    public static void updatePhoneNumber(String name, String newNumber){
         for (Contact contact : contactList){
             if(contact.getName().equalsIgnoreCase(name)){
                 contact.setPhoneNumber(newNumber);
@@ -64,7 +64,7 @@ public class ContactManagement {
 
 
     //Delete
-    public void deleteContact(String contactName){
+    public static void deleteContact(String contactName){
         for(int i = contactList.size() -1; i>= 0; i--){
             if(contactList.get(i).getName().equalsIgnoreCase(contactName)){
                 contactList.remove(i);
